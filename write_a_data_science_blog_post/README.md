@@ -21,3 +21,8 @@ In this project, we attempt to answer the following 3 questions, based on a data
  # Results
  
  Based on the data provided by Stack Overflow, we have found the top 5 countries that answer the 3 questions we have presented previously. Please check the  [project_4.ipynb](https://github.com/gustavex/Udacity_Data_Scientist/blob/master/write_a_data_science_blog_post/project_4.ipynb) file for more details.
+ 
+ # Blog Entry
+ 
+ https://medium.com/@elkesha/we-have-analyzed-stack-overflow-users-income-data-and-have-answered-the-following-three-questions-5fefb599838d
+
