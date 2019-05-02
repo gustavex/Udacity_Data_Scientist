@@ -5,9 +5,9 @@ In this project, we attempt to answer the following 3 questions, based on a data
 
 # Questions
 
-  -  Which countries have higher variation in salary?
-  - Which countries have larger gender pay gap?
-  - Which countries offer better salaries for full-remote employees compared to regular employees?
+  - Which nationals can see higher variation in salary?
+  - Which nationals can see larger gender pay gap?
+  - Which nationals can see better full-remote salaries compared to regular salaries?
 
 # Data
 
