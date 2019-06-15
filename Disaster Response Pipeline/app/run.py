@@ -70,6 +70,9 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
 
     
 def load_data(database_filepath):
+    """
+    This function is used to load data
+    """
     path = 'sqlite:///' + database_filepath
     engine = create_engine(path)
     df = pd.read_sql_table(table_name='df', con=engine)
