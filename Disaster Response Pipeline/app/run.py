@@ -23,7 +23,6 @@ app = Flask(__name__)
 def tokenize(text):
     """
     Tokenization function
-    
     """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
