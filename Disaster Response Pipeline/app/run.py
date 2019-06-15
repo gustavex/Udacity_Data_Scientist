@@ -134,10 +134,10 @@ def index():
       "layout":{  
          "title":"Message Length Frequency Graph",
          "yaxis":{  
-            "title":"Message Length(Characters)"
+            "title":"Frequency"
          },
          "xaxis":{  
-            "title":"Frequency",
+            "title":"Message Length(Characters)",
             "range": [
                 0,
                 500
