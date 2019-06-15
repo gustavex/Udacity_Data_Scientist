@@ -23,7 +23,10 @@ nltk.download('averaged_perceptron_tagger')
 
 
 class MessageLengthTransformer(BaseEstimator, TransformerMixin):
-    
+    """
+    In this class we create a transformer that calculates the Message Length
+    for each message
+    """
     def fit(self, X, y=None):
         return self
     
@@ -32,7 +35,9 @@ class MessageLengthTransformer(BaseEstimator, TransformerMixin):
     
 
 class StartingVerbExtractor(BaseEstimator, TransformerMixin):
-
+    """
+    In this class we create a starting verb extractor
+    """
     def starting_verb(self, text):
         sentence_list = nltk.sent_tokenize(text)
         for sentence in sentence_list:
@@ -51,6 +56,9 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
 
     
 def load_data(database_filepath):
+    """
+    This function is used to load data
+    """
     path = 'sqlite:///' + database_filepath
     engine = create_engine(path)
     df = pd.read_sql_table(table_name='df', con=engine)
@@ -60,6 +68,9 @@ def load_data(database_filepath):
 
     
 def tokenize(text):
+    """
+    Tokenization function
+    """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -71,7 +82,10 @@ def tokenize(text):
     return clean_tokens
 
     
-def build_model():    
+def build_model():
+    """
+    Function used to define model parameters, define pipeline and setup grid search
+    """
     parameters = {
     'clf__estimator': [
                        #AdaBoostClassifier(n_estimators=50,  learning_rate=0.4),
@@ -110,6 +124,9 @@ def build_model():
 
 
 def evaluate_model(model, X_test, y_test, category_names):
+    """
+    Function used to evaluate (print metrics) of the results obtained by the created model
+    """
     y_pred = model.predict(X_test)
     for i, category in enumerate(category_names):
         metrics =  classification_report(y_test.iloc[i], y_pred[i])
@@ -118,6 +135,9 @@ def evaluate_model(model, X_test, y_test, category_names):
 
         
 def save_model(model, model_filepath):
+    """
+    Function used to save the created model
+    """
     with open(model_filepath, 'wb') as file:
         pickle.dump(model, file)
 
