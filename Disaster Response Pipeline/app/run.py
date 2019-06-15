@@ -93,33 +93,78 @@ model = joblib.load("../models/classifier.pkl")
 @app.route('/index')
 def index():
     
-    # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+    message_lengths = df['message'].apply(len).value_counts()
     
-    # create visuals
-    # TODO: Below is an example - modify to create your own visuals
-    graphs = [
-        {
-            'data': [
-                Bar(
-                    x=genre_names,
-                    y=genre_counts
-                )
-            ],
+    new_df = pd.DataFrame(df['message'].apply(tokenize).tolist()).stack()
+    new_df = new_df.reset_index()
+    new_df.drop(columns=["level_0", "level_1"], inplace=True)
+    new_df.columns = ['words']
+    word_counts = new_df['words'].value_counts().head(35)
 
-            'layout': {
-                'title': 'Distribution of Message Genres',
-                'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Genre"
-                }
-            }
-        }
-    ]
+    graphs = [  
+   {  
+      "data":[  
+         {  
+            "x":genre_names,
+            "y":genre_counts,
+            "type":"bar",
+            "marker":{"color": "rgb(224, 102, 102)"}
+         }
+      ],
+      "layout":{  
+         "title":"Distribution of Message Genres",
+         "yaxis":{  
+            "title":"Count"
+         },
+         "xaxis":{  
+            "title":"Genre"
+         }
+      }
+   },
+   {  
+      "data":[  
+         {  
+            "x":message_lengths.index,
+            "y":message_lengths.values,
+            "type":"bar",
+         }
+      ],
+      "layout":{  
+         "title":"Message Length Frequency Graph",
+         "yaxis":{  
+            "title":"Message Length(Characters)"
+         },
+         "xaxis":{  
+            "title":"Frequency",
+            "range": [
+                0,
+                500
+            ]
+         }
+      }
+   },
+   {  
+      "data":[  
+         {  
+            "x":word_counts.index,
+            "y":word_counts.values,
+            "type":"bar",
+            "marker":{"color": "rgb(87, 77, 77)"}
+         }
+      ],
+      "layout":{  
+         "title":"Message Common Words Frequency Graph",
+         "xaxis":{  
+            "title":"Words"
+         },
+         "yaxis":{  
+            "title":"Word Frequency"
+         }
+      }
+   }
+]
     
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
