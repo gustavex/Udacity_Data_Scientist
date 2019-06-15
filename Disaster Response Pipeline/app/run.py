@@ -21,6 +21,10 @@ nltk.download('averaged_perceptron_tagger')
 app = Flask(__name__)
 
 def tokenize(text):
+    """
+    Tokenization function
+    
+    """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -33,7 +37,10 @@ def tokenize(text):
 
 
 class MessageLengthTransformer(BaseEstimator, TransformerMixin):
-    
+    """
+    In this class we create a transformer that calculates the Message Length
+    for each message
+    """
     def fit(self, X, y=None):
         return self
     
@@ -42,7 +49,9 @@ class MessageLengthTransformer(BaseEstimator, TransformerMixin):
     
 
 class StartingVerbExtractor(BaseEstimator, TransformerMixin):
-
+    """
+    In this class we create a starting verb extractor
+    """
     def starting_verb(self, text):
         sentence_list = nltk.sent_tokenize(text)
         for sentence in sentence_list:
