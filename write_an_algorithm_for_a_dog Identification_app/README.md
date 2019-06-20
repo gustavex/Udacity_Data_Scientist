@@ -11,6 +11,10 @@ This is a Convolutional Neural Networks (CNN) project. Given an image of a dog, 
 
 ![Sample Output][image1]
 
+## Blog Post
+
+The results of the project are resumed in [this](https://medium.com/@elkesha/project-write-an-algorithm-for-a-dog-identification-app-f1144944983f?postPublishedType=initial) post. If you have any question, please make a comment.
+
 ## Project Instructions
 
 ### Instructions
